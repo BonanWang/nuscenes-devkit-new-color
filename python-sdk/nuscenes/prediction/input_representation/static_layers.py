@@ -109,24 +109,28 @@ def get_lanes_in_radius(x: float, y: float, radius: float,
 
 def color_by_yaw(agent_yaw_in_radians: float,
                  lane_yaw_in_radians: float) -> Color:
-    """
-    Color the pose one the lane based on its yaw difference to the agent yaw.
-    :param agent_yaw_in_radians: Yaw of the agent with respect to the global frame.
-    :param lane_yaw_in_radians: Yaw of the pose on the lane with respect to the global frame.
-    """
+    # """
+    # Color the pose one the lane based on its yaw difference to the agent yaw.
+    # :param agent_yaw_in_radians: Yaw of the agent with respect to the global frame.
+    # :param lane_yaw_in_radians: Yaw of the pose on the lane with respect to the global frame.
+    # """
 
-    # By adding pi, lanes in the same direction as the agent are colored blue.
-    angle = angle_diff(agent_yaw_in_radians, lane_yaw_in_radians, 2*np.pi) + np.pi
+    # # By adding pi, lanes in the same direction as the agent are colored blue.
+    # angle = angle_diff(agent_yaw_in_radians, lane_yaw_in_radians, 2*np.pi) + np.pi
 
-    # Convert to degrees per colorsys requirement
-    angle = angle * 180/np.pi
+    # # Convert to degrees per colorsys requirement
+    # angle = angle * 180/np.pi
 
-    normalized_rgb_color = colorsys.hsv_to_rgb(angle/360, 1., 1.)
+    # normalized_rgb_color = colorsys.hsv_to_rgb(angle/360, 1., 1.)
 
-    color = [color*255 for color in normalized_rgb_color]
+    # color = [color*255 for color in normalized_rgb_color]
 
+    # # To make the return type consistent with Color definition
+    # return color[0], color[1], color[2]
+    color = (153, 153, 153)
     # To make the return type consistent with Color definition
-    return color[0], color[1], color[2]
+    return color[2], color[1], color[0]
+
 
 
 def draw_lanes_on_image(image: np.ndarray,
@@ -232,7 +236,8 @@ class StaticLayerRasterizer(StaticLayerRepresentation):
         self.layer_names = layer_names
 
         if not colors:
-            colors = [(255, 255, 255), (119, 136, 153), (0, 0, 255)]
+            # colors = [(255, 255, 255), (119, 136, 153), (0, 0, 255)]
+            colors = [(211,211,211), (200,184,195), (200, 184, 195)]
         self.colors = colors
 
         self.resolution = resolution

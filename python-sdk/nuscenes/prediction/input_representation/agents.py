@@ -146,11 +146,14 @@ def default_colors(category_name: str) -> Tuple[int, int, int]:
     """
 
     if 'vehicle' in category_name:
-        return 255, 255, 0  # yellow
+        # return 255, 255, 0  # yellow
+        return 104, 157, 219
     elif 'object' in category_name:
-        return 204, 0, 204  # violet
+        # return 204, 0, 204  # violet
+        return 237, 201, 72
     elif 'human' in category_name or 'animal' in category_name:
-        return 255, 153, 51  # orange
+        # return 255, 153, 51  # orange
+        return 176, 122, 161
     else:
         raise ValueError(f"Cannot map {category_name} to a color.")
 
@@ -185,7 +188,8 @@ def draw_agent_boxes(center_agent_annotation: Dict[str, Any],
             box = get_track_box(annotation, (agent_x, agent_y), center_agent_pixels, resolution)
 
             if instance_token == center_agent_annotation['instance_token']:
-                color = (255, 0, 0)
+                # color = (255, 0, 0)
+                color = (224, 122, 97)
             else:
                 color = get_color(annotation['category_name'])
 
